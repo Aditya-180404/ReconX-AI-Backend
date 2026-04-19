@@ -1,0 +1,15 @@
+Flask==3.0.3
+Flask-Cors==4.0.1
+Flask-Bcrypt==1.0.1
+PyJWT==2.8.0
+mysql-connector-python==8.4.0
+python-dotenv==1.0.1
+openai==1.35.0
+requests==2.32.3
+python-whois==0.9.4
+gunicorn==21.2.0
+google-generativeai==0.8.3
+groq>=0.9.0
+langchain-core
+langchain-google-genai
+langgraph
