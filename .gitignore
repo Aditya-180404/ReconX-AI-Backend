@@ -1,3 +1,4 @@
+# ── Python / Backend ──────────────────────────────────
 __pycache__/
 *.py[cod]
 *.pyo
@@ -12,3 +13,28 @@ venv/
 env/
 .env          # real secrets — never commit
 *.log
+
+# ── Node / Frontend ───────────────────────────────────
+node_modules/
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+*.local
+
+# ── Database ──────────────────────────────────────────
+*.sql.bak
+
+# ── Reports & Uploads (generated content) ─────────────
+reports/*.pdf
+uploads/*
+!uploads/.gitkeep
+!reports/.gitkeep
+
+# ── IDE / OS ──────────────────────────────────────────
+.vscode/settings.json
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+desktop.ini

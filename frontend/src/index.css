@@ -1,0 +1,116 @@
+@import "tailwindcss";
+
+/* ─── Design Tokens ─────────────────────────────────────── */
+@theme {
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  --color-bg-base:      #000000;
+  --color-bg-panel:     #050805;
+  --color-bg-elevated:  #0a120a;
+  --color-border:       #0d230d;
+
+  --color-neon-green:   #00ff41;
+  --color-neon-cyan:    #00ff41;
+  --color-neon-purple:  #00ff41;
+  --color-neon-red:     #ff3860;
+
+  --color-text-primary: #e2e8f0;
+  --color-text-muted:   #64748b;
+}
+
+/* ─── Base Reset ─────────────────────────────────────────── */
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--color-bg-base);
+    color: var(--color-text-primary);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: var(--color-bg-base); }
+  ::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 99px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--color-neon-cyan); }
+}
+
+/* ─── Utility Classes ────────────────────────────────────── */
+@layer utilities {
+
+  /* Glass morphism panel */
+  .glass {
+    background: rgba(10, 18, 10, 0.45); 
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    border: 1px solid rgba(0, 255, 65, 0.25); /* Stronger tinted border */
+    border-radius: 1.25rem;
+    box-shadow: 
+      0 8px 32px 0 rgba(0, 0, 0, 0.6),
+      0 0 20px -2px rgba(0, 255, 65, 0.25); /* More pronounced neon glow */
+  }
+
+  /* Cyber dot-grid background */
+  .cyber-grid {
+    background-image:
+      radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  /* Neon glow text */
+  .glow-green  { text-shadow: 0 0 8px var(--color-neon-green),  0 0 24px rgba(0,255,140,0.3); }
+  .glow-cyan   { text-shadow: 0 0 8px var(--color-neon-cyan),   0 0 24px rgba(0,229,255,0.3); }
+  .glow-purple { text-shadow: 0 0 8px var(--color-neon-purple), 0 0 24px rgba(168,85,247,0.3); }
+
+  /* Neon glow box-shadow */
+  .shadow-neon-green  { box-shadow: 0 0 0 1px var(--color-neon-green),  0 0 20px rgba(0,255,140,0.2); }
+  .shadow-neon-cyan   { box-shadow: 0 0 0 1px var(--color-neon-cyan),   0 0 20px rgba(0,229,255,0.2); }
+  .shadow-neon-purple { box-shadow: 0 0 0 1px var(--color-neon-purple), 0 0 20px rgba(168,85,247,0.2); }
+  .shadow-neon-red    { box-shadow: 0 0 0 1px var(--color-neon-red),    0 0 20px rgba(255,56,96,0.2); }
+
+  /* Animated scan beam */
+  .scan-beam {
+    position: relative;
+    overflow: hidden;
+  }
+  .scan-beam::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(0,229,255,0.15) 50%, transparent 100%);
+    animation: scan-sweep 2.5s ease-in-out infinite;
+  }
+
+  /* Monospace font override */
+  .font-mono { font-family: var(--font-mono); }
+
+  /* Severity badge colors */
+  .badge-critical { background: rgba(255,56,96,0.15);  color: #ff3860; border: 1px solid rgba(255,56,96,0.35); }
+  .badge-high     { background: rgba(249,115,22,0.15); color: #f97316; border: 1px solid rgba(249,115,22,0.35); }
+  .badge-medium   { background: rgba(234,179,8,0.15);  color: #eab308; border: 1px solid rgba(234,179,8,0.35); }
+  .badge-low      { background: rgba(0,255,65,0.10);  color: #00ff41; border: 1px solid rgba(0,255,65,0.25); }
+  .badge-info     { background: rgba(0,255,65,0.10);  color: #00ff41; border: 1px solid rgba(0,255,65,0.25); }
+}
+
+/* ─── Keyframe Animations ────────────────────────────────── */
+@keyframes scan-sweep {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(100%);  }
+}
+
+@keyframes radar-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+.animate-blink    { animation: blink 1s step-end infinite; }
+.animate-radar    { animation: radar-spin 4s linear infinite; }
