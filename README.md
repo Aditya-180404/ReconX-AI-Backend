@@ -163,4 +163,4 @@ npm run dev
 
 ---
 
-*Built with ❤️ for the Hackathon Selection · © 2026 ReconX AI Team*
+*Built with ❤️ for the Hackathon Selection · © 2026 *
